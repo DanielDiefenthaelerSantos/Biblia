@@ -2,6 +2,19 @@ import requests
 from time import sleep
 from threading import Thread
 from tkinter.ttk import Combobox
+from tkinter import Tk, Toplevel
+
+def checkConnection(req : dict | list):
+    """
+    Checks successful request.\n
+
+    {param req} request to check.
+    """
+    if "msg" in req:
+        print(req['msg'])
+        return False
+    else:
+        return True
 
 def randomVerse():
     """
@@ -16,13 +29,17 @@ def randomVerse():
     """
     response = requests.get("https://www.abibliadigital.com.br/api/verses/nvi/random")
     response = response.json()
-    response = {
-        "book": response['book']['name'],
-        "chapter": response["chapter"],
-        "number": response["number"],
-        "text": response["text"]
-    }
-    return response
+    
+    if(checkConnection(response)):
+        response = {
+            "book": response['book']['name'],
+            "chapter": response["chapter"],
+            "number": response["number"],
+            "text": response["text"]
+        }
+        return response
+    else:
+        return {'book': 'Gênesis', 'chapter': 6, 'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}
 
 def getBooks():
     """
@@ -36,17 +53,18 @@ def getBooks():
         {...},\n
     ]
     """
-    # refined = []
+    refined = []
 
-    # response = requests.get("https://www.abibliadigital.com.br/api/books")
-    # response = response.json()
+    response = requests.get("https://www.abibliadigital.com.br/api/books")
+    response = response.json()
 
-    # for r in response:
-    #     refined.append({"abbrev": r['abbrev']['pt'], "name": r['name'], "chapters": r['chapters']})
-    
-    # return response
-
-    return [{'abbrev': {'pt': 'gn'}, 'name': 'Gênesis', 'chapters': 50}, {'abbrev': {'pt': 'ex'}, 'name': 'Êxodo', 'chapters': 40}, {'abbrev': {'pt': 'lv'}, 'name': 'Levítico', 'chapters': 27}, {'abbrev': {'pt': 'nm'}, 'name': 'Números', 'chapters': 36}, {'abbrev': {'pt': 'dt'}, 'name': 'Deuteronômio', 'chapters': 34}, {'abbrev': {'pt': 'js'}, 'name': 'Josué', 'chapters': 24}, {'abbrev': {'pt': 'jz'}, 'name': 'Juízes', 'chapters': 21}, {'abbrev': {'pt': 'rt'}, 'name': 'Rute', 'chapters': 4}, {'abbrev': {'pt': '1sm'}, 'name': '1º Samuel', 'chapters': 31}, {'abbrev': {'pt': '2sm'}, 'name': '2º Samuel', 'chapters': 24}, {'abbrev': {'pt': '1rs'}, 'name': '1º Reis', 'chapters': 22}, {'abbrev': {'pt': '2rs'}, 'name': '2º Reis', 'chapters': 25}, {'abbrev': {'pt': '1cr'}, 'name': '1º Crônicas', 'chapters': 29}, {'abbrev': {'pt': '2cr'}, 'name': '2º Crônicas', 'chapters': 36}, {'abbrev': {'pt': 'ed'}, 'name': 'Esdras', 'chapters': 10}, {'abbrev': {'pt': 'ne'}, 'name': 'Neemias', 'chapters': 13}, {'abbrev': {'pt': 'et'}, 'name': 'Ester', 'chapters': 10}, {'abbrev': {'pt': 'job'}, 'name': 'Jó', 'chapters': 42}, {'abbrev': {'pt': 'sl'}, 'name': 'Salmos', 'chapters': 150}, {'abbrev': {'pt': 'pv'}, 'name': 'Provérbios', 'chapters': 31}, {'abbrev': {'pt': 'ec'}, 'name': 'Eclesiastes', 'chapters': 12}, {'abbrev': {'pt': 'ct'}, 'name': 'Cânticos', 'chapters': 8}, {'abbrev': {'pt': 'is'}, 'name': 'Isaías', 'chapters': 66}, {'abbrev': {'pt': 'jr'}, 'name': 'Jeremias', 'chapters': 52}, {'abbrev': {'pt': 'lm'}, 'name': 'Lamentações de Jeremias', 'chapters': 5}, {'abbrev': {'pt': 'ez'}, 'name': 'Ezequiel', 'chapters': 48}, {'abbrev': {'pt': 'dn'}, 'name': 'Daniel', 'chapters': 12}, {'abbrev': {'pt': 'os'}, 'name': 'Oséias', 'chapters': 14}, {'abbrev': {'pt': 'jl'}, 'name': 'Joel', 'chapters': 3}, {'abbrev': {'pt': 'am'}, 'name': 'Amós', 'chapters': 9}, {'abbrev': {'pt': 'ob'}, 'name': 'Obadias', 'chapters': 1}, {'abbrev': {'pt': 'jn'}, 'name': 'Jonas', 'chapters': 4}, {'abbrev': {'pt': 'mq'}, 'name': 'Miquéias', 'chapters': 7}, {'abbrev': {'pt': 'na'}, 'name': 'Naum', 'chapters': 3}, {'abbrev': {'pt': 'hc'}, 'name': 'Habacuque', 'chapters': 3}, {'abbrev': {'pt': 'sf'}, 'name': 'Sofonias', 'chapters': 3}, {'abbrev': {'pt': 'ag'}, 'name': 'Ageu', 'chapters': 2}, {'abbrev': {'pt': 'zc'}, 'name': 'Zacarias', 'chapters': 14}, {'abbrev': {'pt': 'ml'}, 'name': 'Malaquias', 'chapters': 4}, {'abbrev': {'pt': 'mt'}, 'name': 'Mateus', 'chapters': 28}, {'abbrev': {'pt': 'mc'}, 'name': 'Marcos', 'chapters': 16}, {'abbrev': {'pt': 'lc'}, 'name': 'Lucas', 'chapters': 24}, {'abbrev': {'pt': 'jo'}, 'name': 'João', 'chapters': 21}, {'abbrev': {'pt': 'at'}, 'name': 'Atos', 'chapters': 28}, {'abbrev': {'pt': 'rm'}, 'name': 'Romanos', 'chapters': 16}, {'abbrev': {'pt': '1co'}, 'name': '1ª Coríntios', 'chapters': 16}, {'abbrev': {'pt': '2co'}, 'name': '2ª Coríntios', 'chapters': 13}, {'abbrev': {'pt': 'gl'}, 'name': 'Gálatas', 'chapters': 6}, {'abbrev': {'pt': 'ef'}, 'name': 'Efésios', 'chapters': 6}, {'abbrev': {'pt': 'fp'}, 'name': 'Filipenses', 'chapters': 4}, {'abbrev': {'pt': 'cl'}, 'name': 'Colossenses', 'chapters': 4}, {'abbrev': {'pt': '1ts'}, 'name': '1ª Tessalonicenses', 'chapters': 5}, {'abbrev': {'pt': '2ts'}, 'name': '2ª Tessalonicenses', 'chapters': 3}, {'abbrev': {'pt': '1tm'}, 'name': '1ª Timóteo', 'chapters': 6}, {'abbrev': {'pt': '2tm'}, 'name': '2ª Timóteo', 'chapters': 4}, {'abbrev': {'pt': 'tt'}, 'name': 'Tito', 'chapters': 3}, {'abbrev': {'pt': 'fm'}, 'name': 'Filemom', 'chapters': 1}, {'abbrev': {'pt': 'hb'}, 'name': 'Hebreus', 'chapters': 13}, {'abbrev': {'pt': 'tg'}, 'name': 'Tiago', 'chapters': 5}, {'abbrev': {'pt': '1pe'}, 'name': '1ª Pedro', 'chapters': 5}, {'abbrev': {'pt': '2pe'}, 'name': '2ª Pedro', 'chapters': 3}, {'abbrev': {'pt': '1jo'}, 'name': '1ª João', 'chapters': 5}, {'abbrev': {'pt': '2jo'}, 'name': '2ª João', 'chapters': 1}, {'abbrev': {'pt': '3jo'}, 'name': '3ª João', 'chapters': 1}, {'abbrev': {'pt': 'jd'}, 'name': 'Judas', 'chapters': 1}, {'abbrev': {'pt': 'ap'}, 'name': 'Apocalipse', 'chapters': 22}]
+    if(checkConnection(response)):
+        for r in response:
+            refined.append({"abbrev": r['abbrev']['pt'], "name": r['name'], "chapters": r['chapters']})
+        
+        return response
+    else:
+        return [{'abbrev': {'pt': 'gn'}, 'name': 'Gênesis', 'chapters': 50}, {'abbrev': {'pt': 'ex'}, 'name': 'Êxodo', 'chapters': 40}, {'abbrev': {'pt': 'lv'}, 'name': 'Levítico', 'chapters': 27}, {'abbrev': {'pt': 'nm'}, 'name': 'Números', 'chapters': 36}, {'abbrev': {'pt': 'dt'}, 'name': 'Deuteronômio', 'chapters': 34}, {'abbrev': {'pt': 'js'}, 'name': 'Josué', 'chapters': 24}, {'abbrev': {'pt': 'jz'}, 'name': 'Juízes', 'chapters': 21}, {'abbrev': {'pt': 'rt'}, 'name': 'Rute', 'chapters': 4}, {'abbrev': {'pt': '1sm'}, 'name': '1º Samuel', 'chapters': 31}, {'abbrev': {'pt': '2sm'}, 'name': '2º Samuel', 'chapters': 24}, {'abbrev': {'pt': '1rs'}, 'name': '1º Reis', 'chapters': 22}, {'abbrev': {'pt': '2rs'}, 'name': '2º Reis', 'chapters': 25}, {'abbrev': {'pt': '1cr'}, 'name': '1º Crônicas', 'chapters': 29}, {'abbrev': {'pt': '2cr'}, 'name': '2º Crônicas', 'chapters': 36}, {'abbrev': {'pt': 'ed'}, 'name': 'Esdras', 'chapters': 10}, {'abbrev': {'pt': 'ne'}, 'name': 'Neemias', 'chapters': 13}, {'abbrev': {'pt': 'et'}, 'name': 'Ester', 'chapters': 10}, {'abbrev': {'pt': 'job'}, 'name': 'Jó', 'chapters': 42}, {'abbrev': {'pt': 'sl'}, 'name': 'Salmos', 'chapters': 150}, {'abbrev': {'pt': 'pv'}, 'name': 'Provérbios', 'chapters': 31}, {'abbrev': {'pt': 'ec'}, 'name': 'Eclesiastes', 'chapters': 12}, {'abbrev': {'pt': 'ct'}, 'name': 'Cânticos', 'chapters': 8}, {'abbrev': {'pt': 'is'}, 'name': 'Isaías', 'chapters': 66}, {'abbrev': {'pt': 'jr'}, 'name': 'Jeremias', 'chapters': 52}, {'abbrev': {'pt': 'lm'}, 'name': 'Lamentações de Jeremias', 'chapters': 5}, {'abbrev': {'pt': 'ez'}, 'name': 'Ezequiel', 'chapters': 48}, {'abbrev': {'pt': 'dn'}, 'name': 'Daniel', 'chapters': 12}, {'abbrev': {'pt': 'os'}, 'name': 'Oséias', 'chapters': 14}, {'abbrev': {'pt': 'jl'}, 'name': 'Joel', 'chapters': 3}, {'abbrev': {'pt': 'am'}, 'name': 'Amós', 'chapters': 9}, {'abbrev': {'pt': 'ob'}, 'name': 'Obadias', 'chapters': 1}, {'abbrev': {'pt': 'jn'}, 'name': 'Jonas', 'chapters': 4}, {'abbrev': {'pt': 'mq'}, 'name': 'Miquéias', 'chapters': 7}, {'abbrev': {'pt': 'na'}, 'name': 'Naum', 'chapters': 3}, {'abbrev': {'pt': 'hc'}, 'name': 'Habacuque', 'chapters': 3}, {'abbrev': {'pt': 'sf'}, 'name': 'Sofonias', 'chapters': 3}, {'abbrev': {'pt': 'ag'}, 'name': 'Ageu', 'chapters': 2}, {'abbrev': {'pt': 'zc'}, 'name': 'Zacarias', 'chapters': 14}, {'abbrev': {'pt': 'ml'}, 'name': 'Malaquias', 'chapters': 4}, {'abbrev': {'pt': 'mt'}, 'name': 'Mateus', 'chapters': 28}, {'abbrev': {'pt': 'mc'}, 'name': 'Marcos', 'chapters': 16}, {'abbrev': {'pt': 'lc'}, 'name': 'Lucas', 'chapters': 24}, {'abbrev': {'pt': 'jo'}, 'name': 'João', 'chapters': 21}, {'abbrev': {'pt': 'at'}, 'name': 'Atos', 'chapters': 28}, {'abbrev': {'pt': 'rm'}, 'name': 'Romanos', 'chapters': 16}, {'abbrev': {'pt': '1co'}, 'name': '1ª Coríntios', 'chapters': 16}, {'abbrev': {'pt': '2co'}, 'name': '2ª Coríntios', 'chapters': 13}, {'abbrev': {'pt': 'gl'}, 'name': 'Gálatas', 'chapters': 6}, {'abbrev': {'pt': 'ef'}, 'name': 'Efésios', 'chapters': 6}, {'abbrev': {'pt': 'fp'}, 'name': 'Filipenses', 'chapters': 4}, {'abbrev': {'pt': 'cl'}, 'name': 'Colossenses', 'chapters': 4}, {'abbrev': {'pt': '1ts'}, 'name': '1ª Tessalonicenses', 'chapters': 5}, {'abbrev': {'pt': '2ts'}, 'name': '2ª Tessalonicenses', 'chapters': 3}, {'abbrev': {'pt': '1tm'}, 'name': '1ª Timóteo', 'chapters': 6}, {'abbrev': {'pt': '2tm'}, 'name': '2ª Timóteo', 'chapters': 4}, {'abbrev': {'pt': 'tt'}, 'name': 'Tito', 'chapters': 3}, {'abbrev': {'pt': 'fm'}, 'name': 'Filemom', 'chapters': 1}, {'abbrev': {'pt': 'hb'}, 'name': 'Hebreus', 'chapters': 13}, {'abbrev': {'pt': 'tg'}, 'name': 'Tiago', 'chapters': 5}, {'abbrev': {'pt': '1pe'}, 'name': '1ª Pedro', 'chapters': 5}, {'abbrev': {'pt': '2pe'}, 'name': '2ª Pedro', 'chapters': 3}, {'abbrev': {'pt': '1jo'}, 'name': '1ª João', 'chapters': 5}, {'abbrev': {'pt': '2jo'}, 'name': '2ª João', 'chapters': 1}, {'abbrev': {'pt': '3jo'}, 'name': '3ª João', 'chapters': 1}, {'abbrev': {'pt': 'jd'}, 'name': 'Judas', 'chapters': 1}, {'abbrev': {'pt': 'ap'}, 'name': 'Apocalipse', 'chapters': 22}]
 
 def getBook(book : str):
     """
@@ -62,18 +80,19 @@ def getBook(book : str):
     }
     """
 
-    # response = requests.get(f"https://www.abibliadigital.com.br/api/books/{book}")
-    # response = response.json()
-    # response = {
-    #     "name": response['name'],
-    #     "abbrev": response['abbrev']['pt'],
-    #     "chapters": response["chapters"],
-    #     "group": response["group"],
-    # }
+    response = requests.get(f"https://www.abibliadigital.com.br/api/books/{book}")
+    response = response.json()
+    if(checkConnection(response)):
+        response = {
+            "name": response['name'],
+            "abbrev": response['abbrev']['pt'],
+            "chapters": response["chapters"],
+            "group": response["group"],
+        }
 
-    # return response
-
-    return {'name': 'Gênesis', 'abbrev': 'gn', 'chapters': 50, 'group': 'Pentateuco'}
+        return response
+    else:
+        return {'name': 'Gênesis', 'abbrev': 'gn', 'chapters': 50, 'group': 'Pentateuco'}
 
 def getChapter(book : str, chapter : str | int):
     """
@@ -90,13 +109,14 @@ def getChapter(book : str, chapter : str | int):
         {...},\n
     ]
     """
-    # response = requests.get(f"https://www.abibliadigital.com.br/api/verses/nvi/{book}/{chapter}")
-    # response = response.json()
-    # response = response["verses"]
+    response = requests.get(f"https://www.abibliadigital.com.br/api/verses/nvi/{book}/{chapter}")
+    response = response.json()
 
-    # return response
-
-    return [{'number': 1, 'text': 'Quando os homens começaram a multiplicar-se na terra e lhes nasceram filhas,'}, {'number': 2, 'text': 'os filhos de Deus viram que as filhas dos homens eram bonitas e escolheram para si aquelas que lhes agradaram.'}, {'number': 3, 'text': 'Então disse o Senhor: "Por causa da perversidade do homem, meu Espírito não contenderá com ele para sempre; e ele só viverá cento e vinte anos".'}, {'number': 4, 'text': 'Naqueles dias havia nefilins na terra, e também posteriormente, quando os filhos de Deus possuíram as filhas dos homens e elas lhes deram filhos. Eles foram os heróis do passado, homens famosos.'}, {'number': 5, 'text': 'O Senhor viu que a perversidade do homem tinha aumentado na terra e que toda a inclinação dos pensamentos do seu coração era sempre e somente para o mal.'}, {'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}, {'number': 7, 'text': 'Disse o Senhor: "Farei desaparecer da face da terra o homem que criei, os homens e também os animais grandes, os animais pequenos e as aves do céu. Arrependo-me de havê-los feito".'}, {'number': 8, 'text': 'A Noé, porém, o Senhor mostrou benevolência.'}, {'number': 9, 'text': 'Esta é a história da família de Noé: Noé era homem justo, íntegro entre o povo da sua época; ele andava com Deus.'}, {'number': 10, 'text': 'Noé gerou três filhos: Sem, Cam e Jafé.'}, {'number': 11, 'text': 'Ora, a terra estava corrompida aos olhos de Deus e cheia de violência.'}, {'number': 12, 'text': 'Ao ver como a terra se corrompera, pois toda a humanidade havia corrompido a sua conduta,'}, {'number': 13, 'text': 'Deus disse a Noé: "Darei fim a todos os seres humanos, porque a terra encheu-se de violência por causa deles. Eu os destruirei juntamente com a terra.'}, {'number': 14, 'text': 'Você, porém, fará uma arca de madeira de cipreste; divida-a em compartimentos e revista-a de piche por dentro e por fora.'}, {'number': 15, 'text': 'Faça-a com cento e trinta e cinco metros de comprimento, vinte e dois metros e meio de largura e treze metros e meio de altura.'}, {'number': 16, 'text': 'Faça-lhe um teto com um vão de quarenta e cinco centímetros entre o teto e corpo da arca. Coloque uma porta lateral na arca e faça um andar superior, um médio e um inferior.'}, {'number': 17, 'text': '"Eis que vou trazer águas sobre a terra, o Dilúvio, para destruir debaixo do céu toda criatura que tem fôlego de vida. Tudo o que há na terra perecerá.'}, {'number': 18, 'text': 'Mas com você estabelecerei a minha aliança, e você entrará na arca com seus filhos, sua mulher e as mulheres de seus filhos.'}, {'number': 19, 'text': 'Faça entrar na arca um casal de cada um dos seres vivos, macho e fêmea, para conservá-los vivos com você.'}, {'number': 20, 'text': 'De cada espécie de ave, de cada espécie de animal grande e de cada espécie de animal pequeno que se move rente ao chão virá um casal a você para que sejam conservados vivos.'}, {'number': 21, 'text': 'E armazene todo tipo de alimento, para que você e eles tenham mantimento".'}, {'number': 22, 'text': 'Noé fez tudo exatamente como Deus lhe tinha ordenado.'}]
+    if(checkConnection(response)):
+        response = response["verses"]
+        return response
+    else:
+        return [{'number': 1, 'text': 'Quando os homens começaram a multiplicar-se na terra e lhes nasceram filhas,'}, {'number': 2, 'text': 'os filhos de Deus viram que as filhas dos homens eram bonitas e escolheram para si aquelas que lhes agradaram.'}, {'number': 3, 'text': 'Então disse o Senhor: "Por causa da perversidade do homem, meu Espírito não contenderá com ele para sempre; e ele só viverá cento e vinte anos".'}, {'number': 4, 'text': 'Naqueles dias havia nefilins na terra, e também posteriormente, quando os filhos de Deus possuíram as filhas dos homens e elas lhes deram filhos. Eles foram os heróis do passado, homens famosos.'}, {'number': 5, 'text': 'O Senhor viu que a perversidade do homem tinha aumentado na terra e que toda a inclinação dos pensamentos do seu coração era sempre e somente para o mal.'}, {'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}, {'number': 7, 'text': 'Disse o Senhor: "Farei desaparecer da face da terra o homem que criei, os homens e também os animais grandes, os animais pequenos e as aves do céu. Arrependo-me de havê-los feito".'}, {'number': 8, 'text': 'A Noé, porém, o Senhor mostrou benevolência.'}, {'number': 9, 'text': 'Esta é a história da família de Noé: Noé era homem justo, íntegro entre o povo da sua época; ele andava com Deus.'}, {'number': 10, 'text': 'Noé gerou três filhos: Sem, Cam e Jafé.'}, {'number': 11, 'text': 'Ora, a terra estava corrompida aos olhos de Deus e cheia de violência.'}, {'number': 12, 'text': 'Ao ver como a terra se corrompera, pois toda a humanidade havia corrompido a sua conduta,'}, {'number': 13, 'text': 'Deus disse a Noé: "Darei fim a todos os seres humanos, porque a terra encheu-se de violência por causa deles. Eu os destruirei juntamente com a terra.'}, {'number': 14, 'text': 'Você, porém, fará uma arca de madeira de cipreste; divida-a em compartimentos e revista-a de piche por dentro e por fora.'}, {'number': 15, 'text': 'Faça-a com cento e trinta e cinco metros de comprimento, vinte e dois metros e meio de largura e treze metros e meio de altura.'}, {'number': 16, 'text': 'Faça-lhe um teto com um vão de quarenta e cinco centímetros entre o teto e corpo da arca. Coloque uma porta lateral na arca e faça um andar superior, um médio e um inferior.'}, {'number': 17, 'text': '"Eis que vou trazer águas sobre a terra, o Dilúvio, para destruir debaixo do céu toda criatura que tem fôlego de vida. Tudo o que há na terra perecerá.'}, {'number': 18, 'text': 'Mas com você estabelecerei a minha aliança, e você entrará na arca com seus filhos, sua mulher e as mulheres de seus filhos.'}, {'number': 19, 'text': 'Faça entrar na arca um casal de cada um dos seres vivos, macho e fêmea, para conservá-los vivos com você.'}, {'number': 20, 'text': 'De cada espécie de ave, de cada espécie de animal grande e de cada espécie de animal pequeno que se move rente ao chão virá um casal a você para que sejam conservados vivos.'}, {'number': 21, 'text': 'E armazene todo tipo de alimento, para que você e eles tenham mantimento".'}, {'number': 22, 'text': 'Noé fez tudo exatamente como Deus lhe tinha ordenado.'}]
 
 def getVerse(book : str, chapter : str | int, verse : str | int):
     """
@@ -113,20 +133,21 @@ def getVerse(book : str, chapter : str | int, verse : str | int):
         "text": "the text of the verse."\n
     }
     """    
-    # response = requests.get(f"https://www.abibliadigital.com.br/api/verses/nvi/{book}/{chapter}/{verse}")
-    # response = response.json()
-    # response = {
-    #     "book": response['book']['name'],
-    #     "chapter": response["chapter"],
-    #     "number": response["number"],
-    #     "text": response["text"]
-    # }
+    response = requests.get(f"https://www.abibliadigital.com.br/api/verses/nvi/{book}/{chapter}/{verse}")
+    response = response.json()
+    if(checkConnection(response)):
+        response = {
+            "book": response['book']['name'],
+            "chapter": response["chapter"],
+            "number": response["number"],
+            "text": response["text"]
+        }
 
-    # return response
+        return response
+    else:
+        return {'book': 'Gênesis', 'chapter': 6, 'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}
 
-    return {'book': 'Gênesis', 'chapter': 6, 'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}
-
-def center(win):
+def center(win : Tk | Toplevel):
     """
     Centers a tkinter window.\n
 

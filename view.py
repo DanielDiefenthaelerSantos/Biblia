@@ -3,6 +3,14 @@ import tkinter.ttk as ttk
 from utils import randomVerse, getVerse, getBook, getBooks, getChapter, center, asyncCombobox
 
 def verseWindow(root : Tk, book : str, chapter : str | int, verse : str | int):
+    """
+    Change the main window to display the selected verse.\n
+
+    {param root} the window to change.\n
+    {param book} verse book name.\n
+    {param chapter} verse chapter.\n
+    {param verse} verse number.
+    """
     for widget in root.winfo_children():
         widget.destroy()
 
@@ -28,7 +36,7 @@ def verseWindow(root : Tk, book : str, chapter : str | int, verse : str | int):
 
 def searchWindow(root : Tk):
     """
-    Change the main window to display a verse.\n
+    Change the main window to display the search field to find a verse.\n
 
     {param root} the window to change.
     """
