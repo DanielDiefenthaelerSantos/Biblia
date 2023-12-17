@@ -1,5 +1,7 @@
 import requests
-import threading
+from time import sleep
+from threading import Thread, Event
+from tkinter.ttk import Combobox
 
 def randomVerse():
     """
@@ -142,19 +144,60 @@ def center(win):
     win.geometry('{}x{}+{}+{}'.format(width, height, x, y))
     win.deiconify()
 
-def createThread(select):
+def bookChapterThread(cmb_book : Combobox, cmb_chapter : Combobox):
     """
-    Prepare a function to use per a thread in checkBook().
+    Prepare a function to use per a thread in checkBook().\n
 
-    {param select} the Combobox to check.
+    {param cmb_book} the Combobox to check.\n
+    {param cmb_chapter} the Combobox to alter.
     """
+    last = "Selecione"
+    array_aux = []
+    while True:
+        sleep(1)
+        try:
+            if cmb_book.get() != last:
+                last = cmb_book.get()
+                book = getBook(cmb_book.get())
+                for i in range(1, book['chapters']+1):
+                    array_aux.append(i)
+                cmb_chapter['values'] = array_aux
+        except:
+            break
 
-def checkBook(select):
+def chapterVerseThread(cmb_book : Combobox, cmb_chapter : Combobox, cmb_verse : Combobox):
+    """
+    Prepare a function to use per a thread in checkBook().\n
+
+    {param cmb_chapter} the Combobox to check.
+    {param cmb_verse} the Combobox to alter.\n
+    """
+    last_book = "Selecione"
+    last_chapter = "Selecione"
+    array_aux = []
+    while True:
+        sleep(1)
+        try:
+            if cmb_book.get() != last_book or cmb_chapter.get() != last_chapter:
+                last_book = cmb_book.get()
+                last_chapter = cmb_chapter.get()
+                chapter = getChapter(cmb_book.get(), cmb_chapter.get())
+                for i in range(len(chapter)+1):
+                    array_aux.append(i)
+                cmb_verse['values'] = array_aux
+        except:
+            break
+
+def asyncCombobox(cmb_book : Combobox, cmb_chapter : Combobox, cmb_verse : Combobox):
     """
     Uses Thread to check the Combobox value.\n
 
-    {param select} the Combobox to check.
+    {param cmb_book} the Combobox to check.\n
+    {param cmb_chapter} the Combobox to check/alter.\n
+    {param cmb_verse} the Combobox to alter.
     """
 
-    x = threading.Thread(target=createThread, args=(select))
-    x.start()
+    threadA = Thread(target=bookChapterThread, args=(cmb_book, cmb_chapter))
+    threadB = Thread(target=chapterVerseThread, args=(cmb_book, cmb_chapter, cmb_verse))
+    threadA.start()
+    threadB.start()

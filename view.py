@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from utils import randomVerse, getVerse, getBook, getBooks, getChapter, center
+from utils import randomVerse, getVerse, getBook, getBooks, getChapter, center, asyncCombobox
 
 def verseWindow(root : object):
     """
@@ -34,9 +34,11 @@ def verseWindow(root : object):
 
     books = getBooks()
 
-    values_books = ["Livro"]
-    values_chapters = ["Capítulo"]
-    values_verses = ["Versiculo"]
+    values_books = ["Selecione"]
+    values_chapters = ["Selecione"]
+    values_verses = ["Selecione"]
+
+    asyncCombobox(cmb_book, cmb_chapter, cmb_verse)
 
     for book in books:
         values_books.append(book['name'])
