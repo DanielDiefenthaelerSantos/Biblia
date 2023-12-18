@@ -39,7 +39,7 @@ def randomVerse():
         }
         return response
     else:
-        return {'book': 'Gênesis', 'chapter': 6, 'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}
+        return {"book": 'Gênesis', "chapter": 1, "number": 1, "text": 'No princípio criou Deus o céu e a terra.'}
 
 def getBooks():
     """
@@ -116,7 +116,7 @@ def getChapter(book : str, chapter : str | int):
         response = response["verses"]
         return response
     else:
-        return [{'number': 1, 'text': 'Quando os homens começaram a multiplicar-se na terra e lhes nasceram filhas,'}, {'number': 2, 'text': 'os filhos de Deus viram que as filhas dos homens eram bonitas e escolheram para si aquelas que lhes agradaram.'}, {'number': 3, 'text': 'Então disse o Senhor: "Por causa da perversidade do homem, meu Espírito não contenderá com ele para sempre; e ele só viverá cento e vinte anos".'}, {'number': 4, 'text': 'Naqueles dias havia nefilins na terra, e também posteriormente, quando os filhos de Deus possuíram as filhas dos homens e elas lhes deram filhos. Eles foram os heróis do passado, homens famosos.'}, {'number': 5, 'text': 'O Senhor viu que a perversidade do homem tinha aumentado na terra e que toda a inclinação dos pensamentos do seu coração era sempre e somente para o mal.'}, {'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}, {'number': 7, 'text': 'Disse o Senhor: "Farei desaparecer da face da terra o homem que criei, os homens e também os animais grandes, os animais pequenos e as aves do céu. Arrependo-me de havê-los feito".'}, {'number': 8, 'text': 'A Noé, porém, o Senhor mostrou benevolência.'}, {'number': 9, 'text': 'Esta é a história da família de Noé: Noé era homem justo, íntegro entre o povo da sua época; ele andava com Deus.'}, {'number': 10, 'text': 'Noé gerou três filhos: Sem, Cam e Jafé.'}, {'number': 11, 'text': 'Ora, a terra estava corrompida aos olhos de Deus e cheia de violência.'}, {'number': 12, 'text': 'Ao ver como a terra se corrompera, pois toda a humanidade havia corrompido a sua conduta,'}, {'number': 13, 'text': 'Deus disse a Noé: "Darei fim a todos os seres humanos, porque a terra encheu-se de violência por causa deles. Eu os destruirei juntamente com a terra.'}, {'number': 14, 'text': 'Você, porém, fará uma arca de madeira de cipreste; divida-a em compartimentos e revista-a de piche por dentro e por fora.'}, {'number': 15, 'text': 'Faça-a com cento e trinta e cinco metros de comprimento, vinte e dois metros e meio de largura e treze metros e meio de altura.'}, {'number': 16, 'text': 'Faça-lhe um teto com um vão de quarenta e cinco centímetros entre o teto e corpo da arca. Coloque uma porta lateral na arca e faça um andar superior, um médio e um inferior.'}, {'number': 17, 'text': '"Eis que vou trazer águas sobre a terra, o Dilúvio, para destruir debaixo do céu toda criatura que tem fôlego de vida. Tudo o que há na terra perecerá.'}, {'number': 18, 'text': 'Mas com você estabelecerei a minha aliança, e você entrará na arca com seus filhos, sua mulher e as mulheres de seus filhos.'}, {'number': 19, 'text': 'Faça entrar na arca um casal de cada um dos seres vivos, macho e fêmea, para conservá-los vivos com você.'}, {'number': 20, 'text': 'De cada espécie de ave, de cada espécie de animal grande e de cada espécie de animal pequeno que se move rente ao chão virá um casal a você para que sejam conservados vivos.'}, {'number': 21, 'text': 'E armazene todo tipo de alimento, para que você e eles tenham mantimento".'}, {'number': 22, 'text': 'Noé fez tudo exatamente como Deus lhe tinha ordenado.'}]
+        return [{'number': 1, 'text': 'No princípio criou Deus o céu e a terra.'}, {'number': 2, 'text': 'E a terra era sem forma e vazia; e havia trevas sobre a face do abismo; e o Espírito de Deus se movia sobre a face das águas.'}, {'number': 3, 'text': 'E disse Deus: Haja luz; e houve luz.'}, {'number': 4, 'text': 'E viu Deus que era boa a luz; e fez Deus separação entre a luz e as trevas.'}, {'number': 5, 'text': 'E Deus chamou à luz Dia; e às trevas chamou Noite. E foi a tarde e a manhã, o dia primeiro.'}, {'number': 6, 'text': 'E disse Deus: Haja uma expansão no meio das águas, e haja separação entre águas e águas.'}, {'number': 7, 'text': 'E fez Deus a expansão, e fez separação entre as águas que estavam debaixo da expansão e as águas que estavam sobre a expansão; e assim foi.'}, {'number': 8, 'text': 'E chamou Deus à expansão Céus, e foi a tarde e a manhã, o dia segundo.'}, {'number': 9, 'text': 'E disse Deus: Ajuntem-se as águas debaixo dos céus num lugar; e apareça a porção seca; e assim foi.'}, {'number': 10, 'text': 'E chamou Deus à porção seca Terra; e ao ajuntamento das águas chamou Mares; e viu Deus que era bom.'}, {'number': 11, 'text': 'E disse Deus: Produza a terra erva verde, erva que dê semente, árvore frutífera que dê fruto segundo a sua espécie, cuja semente está nela sobre a terra; e assim foi.'}, {'number': 12, 'text': 'E a terra produziu erva, erva dando semente conforme a sua espécie, e a árvore frutífera, cuja semente está nela conforme a sua espécie; e viu Deus que era bom.'}, {'number': 13, 'text': 'E foi a tarde e a manhã, o dia terceiro.'}, {'number': 14, 'text': 'E disse Deus: Haja luminares na expansão dos céus, para haver separação entre o dia e a noite; e sejam eles para sinais e para tempos determinados e para dias e anos.'}, {'number': 15, 'text': 'E sejam para luminares na expansão dos céus, para iluminar a terra; e assim foi.'}, {'number': 16, 'text': 'E fez Deus os dois grandes luminares: o luminar maior para governar o dia, e o luminar menor para governar a noite; e fez as estrelas.'}, {'number': 17, 'text': 'E Deus os pôs na expansão dos céus para iluminar a terra,'}, {'number': 18, 'text': 'E para governar o dia e a noite, e para fazer separação entre a luz e as trevas; e viu Deus que era bom.'}, {'number': 19, 'text': 'E foi a tarde e a manhã, o dia quarto.'}, {'number': 20, 'text': 'E disse Deus: Produzam as águas abundantemente répteis de alma vivente; e voem as aves sobre a face da expansão dos céus.'}, {'number': 21, 'text': 'E Deus criou as grandes baleias, e todo o réptil de alma vivente que as águas abundantemente produziram conforme as suas espécies; e toda a ave de asas conforme a sua espécie; e viu Deus que era bom.'}, {'number': 22, 'text': 'E Deus os abençoou, dizendo: Frutificai e multiplicai-vos, e enchei as águas nos mares; e as aves se multipliquem na terra.'}, {'number': 23, 'text': 'E foi a tarde e a manhã, o dia quinto.'}, {'number': 24, 'text': 'E disse Deus: Produza a terra alma vivente conforme a sua espécie; gado, e répteis e feras da terra conforme a sua espécie; e assim foi.'}, {'number': 25, 'text': 'E fez Deus as feras da terra conforme a sua espécie, e o gado conforme a sua espécie, e todo o réptil da terra conforme a sua espécie; e viu Deus que era bom.'}, {'number': 26, 'text': 'E disse Deus: Façamos o homem à nossa imagem, conforme a nossa semelhança; e domine sobre os peixes do mar, e sobre as aves dos céus, e sobre o gado, e sobre toda a terra, e sobre todo o réptil que se move sobre a terra.'}, {'number': 27, 'text': 'E criou Deus o homem à sua imagem; à imagem de Deus o criou; homem e mulher os criou.'}, {'number': 28, 'text': 'E Deus os abençoou, e Deus lhes disse: Frutificai e multiplicai-vos, e enchei a terra, e sujeitai-a; e dominai sobre os peixes do mar e sobre as aves dos céus, e sobre todo o animal que se move sobre a terra.'}, {'number': 29, 'text': 'E disse Deus: Eis que vos tenho dado toda a erva que dê semente, que está sobre a face de toda a terra; e toda a árvore, em que há fruto que dê semente, ser-vos-á para mantimento.'}, {'number': 30, 'text': 'E a todo o animal da terra, e a toda a ave dos céus, e a todo o réptil da terra, em que há alma vivente, toda a erva verde será para mantimento; e assim foi.'}, {'number': 31, 'text': 'E viu Deus tudo quanto tinha feito, e eis que era muito bom; e foi a tarde e a manhã, o dia sexto.'}]
 
 def getVerse(book : str, chapter : str | int, verse : str | int):
     """
@@ -145,7 +145,7 @@ def getVerse(book : str, chapter : str | int, verse : str | int):
 
         return response
     else:
-        return {'book': 'Gênesis', 'chapter': 6, 'number': 6, 'text': 'Então o Senhor arrependeu-se de ter feito o homem sobre a terra; e isso cortou-lhe o coração.'}
+        return {'number': 1, 'text': 'No princípio criou Deus o céu e a terra.'}
 
 def center(win : Tk | Toplevel):
     """
@@ -165,6 +165,18 @@ def center(win : Tk | Toplevel):
     win.geometry('{}x{}+{}+{}'.format(width, height, x, y))
     win.deiconify()
 
+def getAbbrev(book : str):
+    """
+    Returns the abbrev name of the book.\n
+
+    {param book} book name.
+    """
+    array = [{'abbrev': "gn", 'name': 'Gênesis'}, {'abbrev': "ex", 'name': 'Êxodo'}, {'abbrev': "lv", 'name': 'Levítico'}, {'abbrev': "nm", 'name': 'Números'}, {'abbrev': "dt", 'name': 'Deuteronômio'}, {'abbrev': "js", 'name': 'Josué'}, {'abbrev': "jz", 'name': 'Juízes'}, {'abbrev': "rt", 'name': 'Rute'}, {'abbrev': "1sm", 'name': '1º Samuel'}, {'abbrev': "2sm", 'name': '2º Samuel'}, {'abbrev': "1rs", 'name': '1º Reis'}, {'abbrev': "2rs", 'name': '2º Reis'}, {'abbrev': "1cr", 'name': '1º Crônicas'}, {'abbrev': "2cr", 'name': '2º Crônicas'}, {'abbrev': "ed", 'name': 'Esdras'}, {'abbrev': "ne", 'name': 'Neemias'}, {'abbrev': "et", 'name': 'Ester'}, {'abbrev': "job", 'name': 'Jó'}, {'abbrev': "sl", 'name': 'Salmos'}, {'abbrev': "pv", 'name': 'Provérbios'}, {'abbrev': "ec", 'name': 'Eclesiastes'}, {'abbrev': "ct", 'name': 'Cânticos'}, {'abbrev': "is", 'name': 'Isaías'}, {'abbrev': "jr", 'name': 'Jeremias'}, {'abbrev': "lm", 'name': 'Lamentações de Jeremias'}, {'abbrev': "ez", 'name': 'Ezequiel'}, {'abbrev': "dn", 'name': 'Daniel'}, {'abbrev': "os", 'name': 'Oséias'}, {'abbrev': "jl", 'name': 'Joel'}, {'abbrev': "am", 'name': 'Amós'}, {'abbrev': "ob", 'name': 'Obadias'}, {'abbrev': "jn", 'name': 'Jonas'}, {'abbrev': "mq", 'name': 'Miquéias'}, {'abbrev': "na", 'name': 'Naum'}, {'abbrev': "hc", 'name': 'Habacuque'}, {'abbrev': "sf", 'name': 'Sofonias'}, {'abbrev': "ag", 'name': 'Ageu'}, {'abbrev': "zc", 'name': 'Zacarias'}, {'abbrev': "ml", 'name': 'Malaquias'}, {'abbrev': "mt", 'name': 'Mateus'}, {'abbrev': "mc", 'name': 'Marcos'}, {'abbrev': "lc", 'name': 'Lucas'}, {'abbrev': "jo", 'name': 'João'}, {'abbrev': "at", 'name': 'Atos'}, {'abbrev': "rm", 'name': 'Romanos'}, {'abbrev': "1co", 'name': '1ª Coríntios'}, {'abbrev': "2co", 'name': '2ª Coríntios'}, {'abbrev': "gl", 'name': 'Gálatas'}, {'abbrev': "ef", 'name': 'Efésios'}, {'abbrev': "fp", 'name': 'Filipenses'}, {'abbrev': "cl", 'name': 'Colossenses'}, {'abbrev': "1ts", 'name': '1ª Tessalonicenses'}, {'abbrev': "2ts", 'name': '2ª Tessalonicenses'}, {'abbrev': "1tm", 'name': '1ª Timóteo'}, {'abbrev': "2tm", 'name': '2ª Timóteo'}, {'abbrev': "tt", 'name': 'Tito'}, {'abbrev': "fm", 'name': 'Filemom'}, {'abbrev': "hb", 'name': 'Hebreus'}, {'abbrev': "tg", 'name': 'Tiago'}, {'abbrev': "1pe", 'name': '1ª Pedro'}, {'abbrev': "2pe", 'name': '2ª Pedro'}, {'abbrev': "1jo", 'name': '1ª João'}, {'abbrev': "2jo", 'name': '2ª João'}, {'abbrev': "3jo", 'name': '3ª João'}, {'abbrev': "jd", 'name': 'Judas'}, {'abbrev': "ap", 'name': 'Apocalipse'}]
+
+    for item in array:
+        if item['name'] == book:
+            return item['abbrev']
+
 def bookChapterThread(cmb_book : Combobox, cmb_chapter : Combobox):
     """
     Prepare a function to use per a thread in checkBook().\n
@@ -179,7 +191,8 @@ def bookChapterThread(cmb_book : Combobox, cmb_chapter : Combobox):
         try:
             if cmb_book.get() != last:
                 last = cmb_book.get()
-                book = getBook(cmb_book.get())
+                book = getBook(getAbbrev(cmb_book.get()))
+                print("opa")
                 for i in range(1, book['chapters']+1):
                     array_aux.append(i)
                 cmb_chapter['values'] = array_aux
@@ -199,10 +212,11 @@ def chapterVerseThread(cmb_book : Combobox, cmb_chapter : Combobox, cmb_verse : 
     while True:
         sleep(1)
         try:
-            if cmb_book.get() != last_book or cmb_chapter.get() != last_chapter:
+            if cmb_book.get() != last_book and cmb_chapter.get() != last_chapter:
                 last_book = cmb_book.get()
                 last_chapter = cmb_chapter.get()
-                chapter = getChapter(cmb_book.get(), cmb_chapter.get())
+                chapter = getChapter(getAbbrev(cmb_book.get()), cmb_chapter.get())
+                print("opa")
                 for i in range(len(chapter)+1):
                     array_aux.append(i)
                 cmb_verse['values'] = array_aux
@@ -218,7 +232,7 @@ def asyncCombobox(cmb_book : Combobox, cmb_chapter : Combobox, cmb_verse : Combo
     {param cmb_verse} the Combobox to alter.
     """
 
-    threadA = Thread(target=bookChapterThread, args=(cmb_book, cmb_chapter))
-    threadB = Thread(target=chapterVerseThread, args=(cmb_book, cmb_chapter, cmb_verse))
-    threadA.start()
-    threadB.start()
+    thread_book_chapter = Thread(target=bookChapterThread, args=(cmb_book, cmb_chapter))
+    thread_chapter_verse = Thread(target=chapterVerseThread, args=(cmb_book, cmb_chapter, cmb_verse))
+    thread_book_chapter.start()
+    thread_chapter_verse.start()

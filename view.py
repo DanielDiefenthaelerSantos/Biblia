@@ -1,6 +1,6 @@
 from tkinter import Tk, Canvas
 import tkinter.ttk as ttk
-from utils import randomVerse, getVerse, getBook, getBooks, getChapter, center, asyncCombobox
+from utils import randomVerse, getVerse, getBook, getBooks, getChapter, center, asyncCombobox, getAbbrev
 
 def verseWindow(root : Tk, book : str, chapter : str | int, verse : str | int):
     """
@@ -73,7 +73,7 @@ def searchWindow(root : Tk):
     cmb_verse = ttk.Combobox(frm_choices)
     cmb_verse.pack(side="left", padx=10)
 
-    btn_search = ttk.Button(root, text="Procurar", command=lambda : verseWindow(root, cmb_book.get(), cmb_chapter.get(), cmb_verse.get()) if (cmb_book.get() != "Selecione" and cmb_chapter.get() != "Selecione" and cmb_verse.get()  != "Selecione") else '')
+    btn_search = ttk.Button(root, text="Procurar", command=lambda : verseWindow(root, getAbbrev(cmb_book.get()), cmb_chapter.get(), cmb_verse.get()) if (cmb_book.get() != "Selecione" and cmb_chapter.get() != "Selecione" and cmb_verse.get()  != "Selecione") else '')
     btn_search.pack(expand=True)
 
     books = getBooks()
